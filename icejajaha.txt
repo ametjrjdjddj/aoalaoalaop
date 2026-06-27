@@ -1,0 +1,484 @@
+local IceHub = {}
+local config = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMae17/API/refs/heads/main/IceHub"))()
+local gameMode = nil
+local isChristmas = config._event_connection._CHRISTMAS_CONNECTION._christmas
+local isHalloween = config._event_connection._HALLOWEEN_CONNECTION._halloween
+local titleColor, buttonColor, labelColor, versionText
+if isHalloween then
+    titleColor = config._rbxev_mode._halloween_mode._ttl
+    buttonColor = config._rbxev_mode._halloween_mode._bps
+    labelColor = config._rbxev_mode._halloween_mode._lblt
+    versionText = config._rbxev_mode._halloween_mode._te
+else
+    buttonColor = nil
+    labelColor = nil
+    versionText = nil
+    titleColor = nil
+end
+if isChristmas then
+    titleColor = config._rbxev_mode._christmas_mode._ttl
+    buttonColor = config._rbxev_mode._christmas_mode._bps
+    labelColor = config._rbxev_mode._christmas_mode._lblt
+    versionText = config._rbxev_mode._christmas_mode._te
+end
+if not (isHalloween or isChristmas) and true or gameMode then
+    titleColor = config._rbxev_mode._normal_mode._ttl
+    buttonColor = config._rbxev_mode._normal_mode._bps
+    labelColor = config._rbxev_mode._normal_mode._lblt
+    versionText = config._rbxev_mode._normal_mode._te
+end
+game.Players.LocalPlayer.Idled:Connect(function()
+    local virtualUser = game:GetService("VirtualUser")
+    virtualUser:CaptureController()
+    virtualUser:ClickButton2(Vector2.new())
+end)
+local activePages = {}
+local tabButtonList = {}
+local tweenService = game:GetService("TweenService")
+if game.CoreGui:FindFirstChild("IceHub") then
+    game.CoreGui:FindFirstChild("IceHub"):Destroy()
+end
+getgenv().getrawmetatable = function(placeholder)
+    while true do
+    end
+end
+getgenv().clonefunction = function(placeholder)
+    while true do
+    end
+end
+getgenv().rconsoleinput = function(placeholder)
+    while true do
+    end
+end
+getgenv().rconsoleinfo = function(placeholder)
+    while true do
+    end
+end
+getgenv().rconsolename = function(placeholder)
+    while true do
+    end
+end
+getgenv().SimpleSpyShutdown = function(placeholder)
+    while true do
+    end
+end
+getgenv().GetPropertyChangedSignal = function(placeholder)
+    while true do
+    end
+end
+getgenv().saveinstance = function(placeholder)
+    while true do
+    end
+end
+getgenv().SimpleSpy = function(placeholder)
+    while true do
+    end
+end
+getgenv().rconsolecreate = function(placeholder)
+    while true do
+    end
+end
+getgenv().rconsole = function(placeholder)
+    while true do
+    end
+end
+getgenv().rawset = function(placeholder)
+    while true do
+    end
+end
+function IceHub.CreateMain(gameName, subtitle)
+    local screenGui = Instance.new("ScreenGui")
+    NotifyFolder = Instance.new("Folder")
+    MainFrameShadow = Instance.new("ImageLabel")
+    MainFrame = Instance.new("Frame")
+    mainFrameCorner = Instance.new("UICorner")
+    TabContainer = Instance.new("Frame")
+    tabContainerCorner = Instance.new("UICorner")
+    tabScrollFrame = Instance.new("ScrollingFrame")
+    tabListLayout = Instance.new("UIListLayout")
+    emptyFrame1 = Instance.new("Frame")
+    FrameFolder = Instance.new("Folder")
+    
+    -- [تعديل أمير - الألوان الملكية للقائمة]
+    MainFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 18)
+    TabContainer.BackgroundColor3 = Color3.fromRGB(22, 22, 26)
+
+    screenGui.Name = "IceHub"
+    screenGui.Parent = game.CoreGui
+    screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NotifyFolder.Name = "NotifyFolder"
+    NotifyFolder.Parent = screenGui
+    MainFrameShadow.Name = "MainFrameShadow"
+    MainFrameShadow.Parent = screenGui
+    MainFrameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    MainFrameShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    MainFrameShadow.BackgroundTransparency = 1
+    MainFrameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+    MainFrameShadow.Size = UDim2.new(0, 542, 0, 312)
+    MainFrameShadow.Image = "rbxassetid://12974351549"
+    MainFrameShadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
+    MainFrameShadow.ImageTransparency = 0.2
+    MainFrameShadow.ScaleType = Enum.ScaleType.Slice
+    MainFrameShadow.SliceCenter = Rect.new(23, 23, 23, 23)
+    MainFrame.Name = "MainFrame"
+    MainFrame.Parent = MainFrameShadow
+    MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+    MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    MainFrame.Size = UDim2.new(0, 520, 0, 290)
+    mainFrameCorner.Name = "mainFrameCorner"
+    mainFrameCorner.CornerRadius = UDim.new(0, 9)
+    mainFrameCorner.Parent = MainFrame
+    
+    -- [حواف حمراء نارية نيون للقائمة]
+    local mainStroke = Instance.new("UIStroke", MainFrame)
+    mainStroke.Color = Color3.fromRGB(255, 0, 50)
+    mainStroke.Thickness = 15
+    
+    TabContainer.Name = "TabContainer"
+    TabContainer.Parent = MainFrame
+    TabContainer.Size = UDim2.new(0, 150, 0, 290)
+    tabContainerCorner.Name = "tabContainerCorner"
+    tabContainerCorner.CornerRadius = UDim.new(0, 9)
+    tabContainerCorner.Parent = TabContainer
+    tabScrollFrame.Name = "tabScrollFrame"
+    tabScrollFrame.Parent = TabContainer
+    tabScrollFrame.Active = true
+    tabScrollFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    tabScrollFrame.BackgroundTransparency = 1
+    tabScrollFrame.BorderSizePixel = 0
+    tabScrollFrame.Position = UDim2.new(0, 0, 0, 77)
+    tabScrollFrame.Size = UDim2.new(0, 150, 0, 185)
+    tabScrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+    tabScrollFrame.ScrollBarThickness = 0
+    tabListLayout.Name = "tabListLayout"
+    tabListLayout.Parent = tabScrollFrame
+    tabListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    tabListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    tabListLayout.Padding = UDim.new(0, 8)
+    emptyFrame1.Name = "emptyFrame1"
+    emptyFrame1.Parent = TabContainer
+    emptyFrame1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    emptyFrame1.BackgroundTransparency = 1
+    emptyFrame1.Position = UDim2.new(0, 140, 0, 0)
+    emptyFrame1.Size = UDim2.new(0, 10, 0, 290)
+    FrameFolder.Name = "FrameFolder"
+    FrameFolder.Parent = MainFrame
+    local uIStroke = Instance.new("UIStroke")
+    uIStroke.Name = "UIStroke"
+    uIStroke.Parent = TabContainer
+    uIStroke.Color = Color3.fromRGB(255, 255, 255)
+    uIStroke.BackgroundTransparency = 1
+    uIStroke.Thickness = 0
+    local logoIcon = Instance.new("ImageLabel")
+    logoIcon.Name = "logoIcon"
+    logoIcon.Parent = TabContainer
+    logoIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    logoIcon.BackgroundTransparency = 1
+    logoIcon.Position = UDim2.new(0, 52, 0, 11)
+    logoIcon.Size = UDim2.new(0, 45, 0, 45)
+    logoIcon.Image = "rbxassetid://106503463690623"
+    local logoStrokeFrame = Instance.new("Frame")
+    logoStrokeFrame.Name = "logoStrokeFrame"
+    logoStrokeFrame.Parent = TabContainer
+    logoStrokeFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    logoStrokeFrame.BackgroundTransparency = 1
+    logoStrokeFrame.Position = UDim2.new(0, 49, 0, 8)
+    logoStrokeFrame.Size = UDim2.new(0, 51, 0, 51)
+    local uICorner = Instance.new("UICorner")
+    uICorner.Parent = logoStrokeFrame
+    uICorner.CornerRadius = UDim.new(0, 12)
+    local logoStroke = Instance.new("UIStroke")
+    logoStroke.Name = "logoStroke"
+    logoStroke.Parent = logoStrokeFrame
+    logoStroke.Color = Color3.fromRGB(255, 175, 0)
+    logoStroke.Thickness = 2
+    local separatorLine = Instance.new("Frame")
+    separatorLine.Name = "separatorLine"
+    separatorLine.Parent = TabContainer
+    separatorLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    separatorLine.BackgroundTransparency = 1
+    separatorLine.Position = UDim2.new(0, 149, 0, 0)
+    separatorLine.Size = UDim2.new(0, 1, 0, 290)
+    local lineStroke = Instance.new("UIStroke")
+    lineStroke.Name = "lineStroke"
+    lineStroke.Parent = separatorLine
+    lineStroke.Color = Color3.fromRGB(255, 255, 255)
+    lineStroke.BackgroundTransparency = 1
+    lineStroke.Thickness = 0
+    local hubTitle = Instance.new("TextLabel")
+    hubTitle.Name = "hubTitle"
+    hubTitle.Parent = MainFrame
+    hubTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    hubTitle.BackgroundTransparency = 1
+    hubTitle.Position = UDim2.new(0, 166, 0, 14)
+    hubTitle.Size = UDim2.new(0, 150, 0, 20)
+    hubTitle.Font = Enum.Font.GothamMedium
+    hubTitle.Text = gameName .. " - " .. subtitle
+    hubTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    hubTitle.TextSize = 14
+    hubTitle.TextXAlignment = Enum.TextXAlignment.Left
+    local minimizeButton = Instance.new("TextButton")
+    minimizeButton.Name = "minimizeButton"
+    minimizeButton.Parent = MainFrame
+    minimizeButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    minimizeButton.BackgroundTransparency = 1
+    minimizeButton.Position = UDim2.new(0, 465, 0, 14)
+    minimizeButton.Size = UDim2.new(0, 16, 0, 16)
+    minimizeButton.Font = Enum.Font.Gotham
+    minimizeButton.Text = "-"
+    minimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    minimizeButton.TextSize = 16
+    local closeButton = Instance.new("TextButton")
+    closeButton.Name = "closeButton"
+    closeButton.Parent = MainFrame
+    closeButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.BackgroundTransparency = 1
+    closeButton.Position = UDim2.new(0, 490, 0, 14)
+    closeButton.Size = UDim2.new(0, 16, 0, 16)
+    closeButton.Font = Enum.Font.Gotham
+    closeButton.Text = "X"
+    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.TextSize = 14
+    local settingsIcon = Instance.new("ImageButton")
+    settingsIcon.Name = "settingsIcon"
+    settingsIcon.Parent = TabContainer
+    settingsIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    settingsIcon.BackgroundTransparency = 1
+    settingsIcon.Position = UDim2.new(0, 12, 0, 263)
+    settingsIcon.Size = UDim2.new(0, 16, 0, 16)
+    settingsIcon.Image = "rbxassetid://113111364234500"
+    settingsIcon.ImageColor3 = Color3.fromRGB(150, 150, 150)
+    local versionLabel = Instance.new("TextLabel")
+    versionLabel.Name = "versionLabel"
+    versionLabel.Parent = TabContainer
+    versionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    versionLabel.BackgroundTransparency = 1
+    versionLabel.Position = UDim2.new(0, 93, 0, 264)
+    versionLabel.Size = UDim2.new(0, 45, 0, 15)
+    versionLabel.Font = Enum.Font.Gotham
+    versionLabel.Text = "v1.0.0"
+    versionLabel.TextColor3 = Color3.fromRGB(120, 120, 120)
+    versionLabel.TextSize = 12
+    versionLabel.TextXAlignment = Enum.TextXAlignment.Right
+    local pageContainer = Instance.new("Frame")
+    pageContainer.Name = "pageContainer"
+    pageContainer.Parent = MainFrame
+    pageContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    pageContainer.BackgroundTransparency = 1
+    pageContainer.Position = UDim2.new(0, 166, 0, 46)
+    pageContainer.Size = UDim2.new(0, 342, 0, 233)
+    local containerStroke = Instance.new("UIStroke")
+    containerStroke.Name = "containerStroke"
+    containerStroke.Parent = pageContainer
+    containerStroke.Color = Color3.fromRGB(255, 255, 255)
+    containerStroke.BackgroundTransparency = 1
+    containerStroke.Thickness = 0
+    local isDragging = false
+    local dragInput, dragStart, startPosition
+    local function updateDrag(input)
+        local delta = input.Position - dragStart
+        MainFrameShadow.Position = UDim2.new(startPosition.X.Scale, startPosition.X.Offset + delta.X, startPosition.Y.Scale, startPosition.Y.Offset + delta.Y)
+    end
+    MainFrame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            isDragging = true
+            dragStart = input.Position
+            startPosition = MainFrameShadow.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    isDragging = false
+                end
+            end)
+        end
+    end)
+    MainFrame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and isDragging then
+            updateDrag(input)
+        end
+    end)
+    local isMinimized = false
+    minimizeButton.MouseButton1Click:Connect(function()
+        if isMinimized then
+            tweenService:Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(0, 520, 0, 290)
+            }):Play()
+            tweenService:Create(MainFrameShadow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(0, 542, 0, 312)
+            }):Play()
+            pageContainer.Visible = true
+            TabContainer.Size = UDim2.new(0, 150, 0, 290)
+            tabScrollFrame.Visible = true
+            logoIcon.Visible = true
+            logoStrokeFrame.Visible = true
+            settingsIcon.Visible = true
+            versionLabel.Visible = true
+        else
+            tweenService:Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(0, 520, 0, 45)
+            }):Play()
+            tweenService:Create(MainFrameShadow, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(0, 542, 0, 67)
+            }):Play()
+            pageContainer.Visible = false
+            TabContainer.Size = UDim2.new(0, 150, 0, 45)
+            tabScrollFrame.Visible = false
+            logoIcon.Visible = false
+            logoStrokeFrame.Visible = false
+            settingsIcon.Visible = false
+            versionLabel.Visible = false
+        end
+        isMinimized = not isMinimized
+    end)
+    closeButton.MouseButton1Click:Connect(function()
+        screenGui:Destroy()
+    end)
+    
+    function IceHub.CreateTab(tabName)
+        local tabButton = Instance.new("TextButton")
+        local tabButtonCorner = Instance.new("UICorner")
+        local tabStroke = Instance.new("UIStroke")
+        tabButton.Name = tabName .. "Tab"
+        tabButton.Parent = tabScrollFrame
+        tabButton.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+        tabButton.BackgroundTransparency = 1
+        tabButton.Size = UDim2.new(0, 130, 0, 32)
+        tabButton.Font = Enum.Font.Gotham
+        tabButton.Text = tabName
+        tabButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+        tabButton.TextSize = 14
+        tabButtonCorner.CornerRadius = UDim.new(0, 6)
+        tabButtonCorner.Parent = tabButton
+        tabStroke.Parent = tabButton
+        tabStroke.Color = Color3.fromRGB(255, 255, 255)
+        tabStroke.BackgroundTransparency = 1
+        tabStroke.Thickness = 0
+        local pageFrame = Instance.new("ScrollingFrame")
+        local pageListLayout = Instance.new("UIListLayout")
+        pageFrame.Name = tabName .. "Page"
+        pageFrame.Parent = pageContainer
+        pageFrame.Active = true
+        pageFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        pageFrame.BackgroundTransparency = 1
+        pageFrame.BorderSizePixel = 0
+        pageFrame.Size = UDim2.new(0, 342, 0, 233)
+        pageFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+        pageFrame.ScrollBarThickness = 3
+        pageFrame.ScrollBarImageColor3 = Color3.fromRGB(80, 80, 80)
+        pageFrame.Visible = false
+        pageListLayout.Name = "pageListLayout"
+        pageListLayout.Parent = pageFrame
+        pageListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+        pageListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+        pageListLayout.Padding = UDim.new(0, 9)
+        table.insert(activePages, pageFrame)
+        table.insert(tabButtonList, tabButton)
+        if #activePages == 1 then
+            pageFrame.Visible = true
+            tabButton.BackgroundTransparency = 0
+            tabButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            tabStroke.BackgroundTransparency = 0.9
+        end
+        tabButton.MouseButton1Click:Connect(function()
+            for _, page in pairs(activePages) do
+                page.Visible = false
+            end
+            for _, btn in pairs(tabButtonList) do
+                btn.BackgroundTransparency = 1
+                btn.TextColor3 = Color3.fromRGB(200, 200, 200)
+                if btn:ToTensor() and btn:FindFirstChild("UIStroke") then
+                    btn.UIStroke.BackgroundTransparency = 1
+                end
+            end
+            pageFrame.Visible = true
+            tabButton.BackgroundTransparency = 0
+            tabButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            tabStroke.BackgroundTransparency = 0.9
+        end)
+        
+        local pageElements = {}
+        
+        -- [تعديل أمير - تلوين دالة الأزرار بالتفصيل]
+        function pageElements.CreateButton(text, callback)
+            local buttonFrame = Instance.new("TextButton")
+            local buttonCorner = Instance.new("UICorner")
+            buttonFrame.Name = "Button"
+            buttonFrame.Parent = pageFrame
+            buttonFrame.Size = UDim2.new(0, 330, 0, 35)
+            -- ألوان الزر الملكية
+            buttonFrame.BackgroundColor3 = Color3.fromRGB(28, 28, 32)
+            buttonFrame.Font = Enum.Font.Gotham
+            buttonFrame.Text = text
+            buttonFrame.TextColor3 = Color3.fromRGB(255, 255, 255)
+            buttonFrame.TextSize = 14
+            buttonCorner.CornerRadius = UDim.new(0, 6)
+            buttonCorner.Parent = buttonFrame
+            
+            -- حواف حمراء لكل زر
+            local bStroke = Instance.new("UIStroke", buttonFrame)
+            bStroke.Color = Color3.fromRGB(255, 0, 50)
+            bStroke.Thickness = 1
+            
+            buttonFrame.MouseButton1Click:Connect(function()
+                pcall(callback)
+            end)
+        end
+        
+        -- [تعديل أمير - تلوين دالة التوجلات بالتفصيل]
+        function pageElements.CreateToggle(text, default, callback)
+            local toggled = default
+            local toggleFrame = Instance.new("Frame")
+            local toggleCorner = Instance.new("UICorner")
+            local toggleText = Instance.new("TextLabel")
+            local toggleButton = Instance.new("TextButton")
+            local toggleDisplay = Instance.new("Frame")
+            local displayCorner = Instance.new("UICorner")
+            toggleFrame.Name = "ToggleFrame"
+            toggleFrame.Parent = pageFrame
+            toggleFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 26)
+            toggleFrame.Size = UDim2.new(0, 330, 0, 38)
+            toggleCorner.CornerRadius = UDim.new(0, 6)
+            toggleCorner.Parent = toggleFrame
+            toggleText.Name = "ToggleText"
+            toggleText.Parent = toggleFrame
+            toggleText.BackgroundTransparency = 1
+            toggleText.Position = UDim2.new(0, 14, 0, 0)
+            toggleText.Size = UDim2.new(0, 200, 0, 38)
+            toggleText.Font = Enum.Font.Gotham
+            toggleText.Text = text
+            toggleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+            toggleText.TextSize = 14
+            toggleText.TextXAlignment = Enum.TextXAlignment.Left
+            toggleButton.Name = "ToggleButton"
+            toggleButton.Parent = toggleFrame
+            toggleButton.BackgroundTransparency = 1
+            toggleButton.Size = UDim2.new(0, 330, 0, 38)
+            toggleButton.Text = ""
+            toggleDisplay.Name = "ToggleDisplay"
+            toggleDisplay.Parent = toggleFrame
+            toggleDisplay.Position = UDim2.new(0, 290, 0, 11)
+            toggleDisplay.Size = UDim2.new(0, 26, 0, 16)
+            -- المربع يشتغل أخضر زمردي أو يطفي رمادي
+            toggleDisplay.BackgroundColor3 = toggled and Color3.fromRGB(0, 255, 150) or Color3.fromRGB(45, 45, 50)
+            displayCorner.CornerRadius = UDim.new(0, 4)
+            displayCorner.Parent = toggleDisplay
+            
+            toggleButton.MouseButton1Click:Connect(function()
+                toggled = not toggled
+                if toggled then
+                    toggleDisplay.BackgroundColor3 = Color3.fromRGB(0, 255, 150)
+                else
+                    toggleDisplay.BackgroundColor3 = Color3.fromRGB(45, 45, 50)
+                end
+                pcall(callback, toggled)
+            end)
+        end
+        return pageElements
+    end
+    return IceHub
+end
+return IceHub
